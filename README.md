@@ -1,4 +1,5 @@
 # CPT_S 453 Graph Theory Final Project Code Implementation  
+Final project for CPT_S 453 at WSU-TC Fall 2024  
 
 ![Map of Rome](./images/osm.pdf.png)
 
