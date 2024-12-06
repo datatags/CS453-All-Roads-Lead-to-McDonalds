@@ -50,7 +50,8 @@ def a_star_search(graph, start, dest):
         # If we reached the destination
         if is_destination(current, dest):
             path = trace_path(came_from, dest)
-            print("Path found:", path)
+            #print("Path found:", path)
+            #print(f"Number of elements in the path: {len(path)}")
             return path
         
         # Explore neighbors
@@ -75,10 +76,14 @@ if __name__ == "__main__":
 
     McDs_locations = [8389, 8390, 8391, 8392, 8393, 8394, 8395, 8396]
     for location in McDs_locations:
-        start_time = time.perf_counter()
-        path = a_star_search(graph, start, dest=location)  # For example, find the path to node 5
-        end_time = time.perf_counter()
-        McDs_time = end_time - start_time
-
-        print("Time to find shortest path to McDonald's", location, ":", McDs_time)
+        average_time = 0
+        for i in range(10):
+            start_time = time.perf_counter()
+            path = a_star_search(graph, start, dest=location)  # For example, find the path to node 5
+            end_time = time.perf_counter()
+            McDs_time = end_time - start_time
+            average_time += McDs_time
+        print("Time to find shortest path to McDonald's", location, ":", average_time/10)
+        print("Shortest Path from root to destination:", path)
+        print(f"Number of elements in the path: {len(path)}")
 

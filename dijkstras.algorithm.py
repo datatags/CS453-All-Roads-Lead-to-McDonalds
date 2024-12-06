@@ -103,3 +103,4 @@ for location in McDs_locations:
     #print_tree(T, d, r)
     print("Shortest Path from root to destination:", path)
     print(f"Total Distance from root to destination:", total_distance)
+    print(f"Number of elements in the path: {len(path)}")

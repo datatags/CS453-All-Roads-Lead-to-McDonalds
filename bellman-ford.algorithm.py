@@ -51,9 +51,19 @@ def wrapper(g, start, target):
     short_path = findPath(Bellman, start, target)
     total_dist = Bellman[target][0]
     print("DISATNCE: ", total_dist, "PATH: ",short_path)
+    print(f"Number of elements in the path: {len(short_path)}")
     return
 
 g = WeightedGraph(0)
 g.load_graph("rome_italy.pkl")
-wrapper(g, 8430, 8389)
+McDs_locations = [8389, 8390, 8391, 8392, 8393, 8394, 8395, 8396]
+for location in McDs_locations:
+    average_time = 0
+    for i in range(10):
+        start_time = time.perf_counter()
+        T, d, path, total_distance = wrapper(g, 8430, dest=location)  # For example, find the path to node 5
+        end_time = time.perf_counter()
+        McDs_time = end_time - start_time
+        average_time += McDs_time
+    print(f"Time to find shortest path to McDonald's", location, ":", average_time/10)
 
