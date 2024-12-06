@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #coded by Tuff Hensen for WSU-TC Fall 2024 CPT_S 453 Graph Theory
 from WeightedGraph import *
 import heapq

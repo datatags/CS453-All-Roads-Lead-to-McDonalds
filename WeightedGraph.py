@@ -39,15 +39,14 @@ class WeightedGraph:
         if node1 not in self.adj_matrix or node2 not in self.adj_matrix[node1]:
             return 0
         return self.adj_matrix[node1][node2]
-
+    
     def num_edges(self):
-        return 0
-        # num_edges = 0
-        # for i in range(self.num_nodes):
-        #     for j in range(i+1, self.num_nodes):
-        #         if self.adj_matrix[i][j] != 0:
-        #             num_edges += 1
-        # return num_edges
+        num_edges = 0
+        for neighbors in self.adj_matrix.values():
+            for weight in neighbors.values():
+                if weight != 0:
+                    num_edges += 1
+        return num_edges
 
     def print_graph(self):
         # Print the adjacency matrix
