@@ -1,3 +1,5 @@
+#modified by Dietrich Zacher for WSU-TC Fall 2024 CPT_S 453 Graph Theory
+#based on code provided by Dr. Sihui Li
 import pickle
 
 class WeightedGraph:
