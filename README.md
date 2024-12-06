@@ -44,6 +44,6 @@ python3 <file name>
 1. Create a free account at [Interline](https://app.interline.io/osm_extracts/interactive_view)
 2. Log in and create an API key.
 3. Visit the [interactive view](https://app.interline.io/osm_extracts/interactive_view) page and paste your API key in the box at the top of the map.
-4. Locate "Rome" in the list of cities and click "download".
+4. Select "Rome" in the list of cities, ensure "OSM PBF" is selected as the download type, and click "download".
 5. Copy the file into the directory with `convert_data.py`, ensuring it's named `rome_italy.osm.pbf`.
 6. Execute `convert_data.py` as above. The files `rome_italy.pkl`, `osm.png`, and `osm.pdf` should be generated.
