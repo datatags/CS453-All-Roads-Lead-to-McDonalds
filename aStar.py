@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 #coded by Joel Aleman for WSU-TC Fall 2024 CPT_S 453 Graph Theory
+#adapted from GeeksforGeeks A* search algorithm
 from WeightedGraph import *
 import heapq
 import math
 import time
+
 
 class Cell:
     def __init__(self):
@@ -20,10 +22,11 @@ def is_destination(node, dest):
 def get_neighbors(graph, node):
     return graph.adj_matrix.get(node, {})
 
+# Calculate the Euclidean distance between the node and the destination
 def calculate_h_value(node, dest):
-    # Example heuristic: You can use any heuristic here. If you have a specific heuristic, change this.
-    return abs(node - dest)  # Example for nodes that are numeric
+    return abs(node - dest) 
 
+# Trace the path from the destination to the start
 def trace_path(came_from, dest):
     path = []
     current = dest
@@ -68,8 +71,8 @@ def a_star_search(graph, start, dest):
     print("No path found")
     return None
 
+# A* driver code
 if __name__ == "__main__":
-    
     graph = WeightedGraph(0)
     graph.load_graph("rome_italy.pkl")
     start = 8430
@@ -77,13 +80,30 @@ if __name__ == "__main__":
     McDs_locations = [8389, 8390, 8391, 8392, 8393, 8394, 8395, 8396]
     for location in McDs_locations:
         average_time = 0
+        path = None  # Initialize path outside the loop
+        
         for i in range(10):
             start_time = time.perf_counter()
-            path = a_star_search(graph, start, dest=location)  # For example, find the path to node 5
+            path = a_star_search(graph, start, dest=location)  # Find the path to the McDonald's location
             end_time = time.perf_counter()
             McDs_time = end_time - start_time
             average_time += McDs_time
-        print("Time to find shortest path to McDonald's", location, ":", average_time/10)
+
+            if path is None:
+                print(f"No path found to McDonald's location {location}. Skipping this iteration.")
+                break  # Break the loop if no path is found
+
+        if path is None:
+            continue  # Skip the outer loop if no valid path was found
+
+        # Calculate the sum of distances between nodes in the path
+        distance = 0
+        for i in range(len(path) - 1):
+            # If the adjacency matrix is a dictionary of dictionaries
+            # Assuming graph.adj_matrix[path[i]] returns a dictionary of neighbors
+            distance += graph.adj_matrix[path[i]].get(path[i + 1], float('inf'))  # Use 'inf' for missing edges
+
+        print(f"Distance from root to McDonald's location {location}: {distance}")
+        print(f"Time to find shortest path to McDonald's {location}: {average_time / 10}")
         print("Shortest Path from root to destination:", path)
         print(f"Number of elements in the path: {len(path)}")
-
